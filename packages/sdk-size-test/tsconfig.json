@@ -1,0 +1,14 @@
+{
+  "extends": "@webstudio-is/tsconfig/base.json",
+  "include": [
+    "app",
+    "remix.env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "../../@types/**/*.d.ts"
+  ],
+  "compilerOptions": {
+    "rootDir": "./app",
+    "baseUrl": "."
+  }
+}

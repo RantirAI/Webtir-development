@@ -1,0 +1,102 @@
+name: Chromatic
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+# cancel in-progress runs on new commits to same PR (gitub.event.number)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read # to fetch code (actions/checkout)
+
+jobs:
+  chromatic:
+    timeout-minutes: 20
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        project:
+          [builder-app, css-engine, design-system, icons, image, sdk-components-react]
+        include:
+          - project: builder-app
+            chromaticSecretKey: CHROMATIC_DESIGNER_APP_TOKEN
+            workingDir: apps/builder
+
+          - project: css-engine
+            chromaticSecretKey: CHROMATIC_CSS_ENGINE_TOKEN
+            workingDir: packages/css-engine
+
+          - project: design-system
+            chromaticSecretKey: CHROMATIC_DESIGN_SYSTEM_TOKEN
+            workingDir: packages/design-system
+
+          - project: icons
+            chromaticSecretKey: CHROMATIC_ICONS_TOKEN
+            workingDir: packages/icons
+
+          - project: image
+            chromaticSecretKey: CHROMATIC_IMAGE_TOKEN
+            workingDir: packages/image
+
+          - project: sdk-components-react
+            chromaticSecretKey: CHROMATIC_REACT_SDK_TOKEN
+            workingDir: packages/sdk-components-react
+
+    outputs:
+      builder-app: ${{ steps.deployed-url.outputs.builder-app }}
+      css-engine: ${{ steps.deployed-url.outputs.css-engine }}
+      design-system: ${{ steps.deployed-url.outputs.design-system }}
+      icons: ${{ steps.deployed-url.outputs.icons }}
+      image: ${{ steps.deployed-url.outputs.image }}
+      sdk-components-react: ${{ steps.deployed-url.outputs.sdk-components-react }}
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2 # we need to fetch at least parent commit to satisfy Chromatic
+          ref: ${{ github.event.pull_request.head.sha || github.sha }} # HEAD commit instead of merge commit
+
+      - uses: ./.github/actions/ci-setup
+
+      - name: Chromatic
+        id: chromatic
+        uses: chromaui/action@v1
+        with:
+          projectToken: ${{ secrets[matrix.chromaticSecretKey] }}
+          workingDir: ${{ matrix.workingDir }}
+          buildScriptName: storybook:build
+
+      - name: Save deployed URL
+        id: deployed-url
+        run: echo "${{ matrix.project }}=${{ steps.chromatic.outputs.storybookUrl }}" >> $GITHUB_OUTPUT
+
+  chromatic-root:
+    timeout-minutes: 20
+
+    needs: chromatic
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2 # we need to fetch at least parent commit to satisfy Chromatic
+          ref: ${{ github.event.pull_request.head.sha || github.sha }} # HEAD commit instead of merge commit
+
+      - uses: ./.github/actions/ci-setup
+
+      - name: Chromatic
+        id: chromatic
+        uses: chromaui/action@v1
+        with:
+          projectToken: ${{ secrets.CHROMATIC_ROOT }}
+          buildScriptName: storybook:build
+        env:
+          DEPLOYED_URLS: ${{ toJSON(needs.chromatic.outputs) }}

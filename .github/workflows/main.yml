@@ -1,0 +1,48 @@
+name: Main workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+# cancel in-progress runs on new commits to same PR (gitub.event.number)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read # to fetch code (actions/checkout)
+
+jobs:
+  checks:
+    timeout-minutes: 20
+
+    env:
+      DATABASE_URL: postgres://
+      AUTH_SECRET: test
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }} # HEAD commit instead of merge commit
+
+      - uses: ./.github/actions/ci-setup
+
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ./node_modules/.cache/prettier/.prettier-cache
+            ./node_modules/.cache/eslint/.eslint-cache
+          key: checks-${{ github.sha }}
+          restore-keys: checks-
+
+      - run: echo ===SHA USED=== ${{ github.event.pull_request.head.sha || github.sha }} # todo: remove after check whats happening on main
+
+      - run: pnpm prettier --cache --check "**/*.{js,md,ts,tsx}"
+
+      - run: pnpm eslint . --ext .ts,.tsx --max-warnings 0 --cache --cache-strategy=content --cache-location=node_modules/.cache/eslint/.eslint-cache
+
+      - run: pnpm turbo run size-test build checks

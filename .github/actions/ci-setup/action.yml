@@ -1,0 +1,16 @@
+name: CI setup
+
+description: |
+  Sets up the CI environment for the project.
+
+runs:
+  using: "composite"
+
+  steps:
+    - uses: pnpm/action-setup@v2.2.4
+    - uses: actions/setup-node@v3
+      with:
+        node-version: "18.x"
+        cache: pnpm
+    - run: pnpm install --frozen-lockfile --ignore-scripts
+      shell: bash

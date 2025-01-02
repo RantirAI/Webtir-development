@@ -1,0 +1,10 @@
+{
+  "name": "@webstudio-is/tsconfig",
+  "version": "1.0.6",
+  "private": false,
+  "main": "index.js",
+  "files": [
+    "base.json",
+    "remix.json"
+  ]
+}

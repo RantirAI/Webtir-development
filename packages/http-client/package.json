@@ -1,0 +1,39 @@
+{
+  "name": "@webstudio-is/http-client",
+  "version": "0.82.0",
+  "description": "Webstudio HTTP Client",
+  "author": "Webstudio <github@webstudio.is>",
+  "homepage": "https://webstudio.is",
+  "type": "module",
+  "scripts": {
+    "dev": "build-package --watch",
+    "build": "build-package",
+    "dts": "tsc --project tsconfig.dts.json",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "typecheck": "tsc",
+    "checks": "pnpm typecheck"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.6.1",
+    "@webstudio-is/jest-config": "workspace:^",
+    "@webstudio-is/prisma-client": "workspace:^",
+    "@webstudio-is/react-sdk": "workspace:^",
+    "@webstudio-is/scripts": "workspace:^",
+    "@webstudio-is/tsconfig": "workspace:^",
+    "jest": "^29.6.1",
+    "typescript": "5.1.6"
+  },
+  "exports": {
+    "source": "./src/index.ts",
+    "types": "./lib/types/index.d.ts",
+    "import": "./lib/index.js"
+  },
+  "files": [
+    "lib/*",
+    "src/*",
+    "!*.test.*"
+  ],
+  "license": "MIT",
+  "private": false,
+  "sideEffects": false
+}
