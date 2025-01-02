@@ -1,4 +1,4 @@
-import { ChevronDownIcon, WebstudioIcon } from "@webstudio-is/icons";
+import { ChevronDownIcon, WebtirIcon } from "@webstudio-is/icons";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -66,7 +66,7 @@ export const Header = ({ user }: { user: User }) => {
       justify="between"
       className={containerStyle()}
     >
-      <WebstudioIcon width={30} height={23} />
+      <WebtirIcon />
       <Flex gap="1" align="center">
         <Menu user={user} />
       </Flex>

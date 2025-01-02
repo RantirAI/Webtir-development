@@ -5,7 +5,7 @@ import {
   rawTheme,
   toggleItemStyle,
 } from "@webstudio-is/design-system";
-import { HamburgerMenuIcon, WebstudioIcon } from "@webstudio-is/icons";
+import { HamburgerMenuIcon, WebtirIcon } from "@webstudio-is/icons";
 
 const size = rawTheme.spacing[9];
 
@@ -56,7 +56,7 @@ export const MenuButton = () => {
     >
       <span className={innerContainerStyle()}>
         <span className={faceStyle({ front: true })}>
-          <WebstudioIcon width="22" height="22" />
+          <WebtirIcon width="22" height="22" />
         </span>
         <span className={faceStyle({ back: true })}>
           <HamburgerMenuIcon size={22} />

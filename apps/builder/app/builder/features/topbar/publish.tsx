@@ -35,6 +35,7 @@ import {
   CheckCircleIcon,
   ExternalLinkIcon,
   AlertIcon,
+  RocketWhiteIcon,
 } from "@webstudio-is/icons";
 import { createTrpcFetchProxy } from "~/shared/remix/trpc-remix-proxy";
 import { builderDomainsPath } from "~/shared/router-utils";
@@ -482,8 +483,13 @@ export const PublishButton = ({ projectId }: PublishProps) => {
       <FloatingPanelAnchor>
         <Tooltip side="bottom" content={tooltipContent}>
           <FloatingPanelPopoverTrigger asChild>
-            <Button disabled={isPublishDisabled} color="positive">
-              Publish
+            <Button disabled={isPublishDisabled} color="dark">
+              <Flex gap="1">
+                <Text variant="regularBold" align="center">
+                  Publish
+                </Text>
+                <RocketWhiteIcon color="transparent" />
+              </Flex>
             </Button>
           </FloatingPanelPopoverTrigger>
         </Tooltip>
@@ -494,6 +500,7 @@ export const PublishButton = ({ projectId }: PublishProps) => {
           zIndex: theme.zIndices[1],
           width: theme.spacing[33],
           maxWidth: theme.spacing[33],
+          marginTop: theme.spacing[6],
         }}
       >
         <FloatingPanelPopoverTitle>Publish</FloatingPanelPopoverTitle>

@@ -18,6 +18,7 @@ const colors = [
   "primary",
   "destructive",
   "positive",
+  "transparent",
   "neutral",
   "ghost",
   "dark",
@@ -35,6 +36,7 @@ const backgrounds: Record<ButtonColor, string> = {
   "neutral-destructive": theme.colors.backgroundNeutralMain,
   destructive: theme.colors.backgroundDestructiveMain,
   positive: theme.colors.backgroundSuccessMain,
+  transparent: "transparent",
   ghost: theme.colors.backgroundHover,
   dark: theme.colors.backgroundTopbar,
   gradient: theme.colors.backgroundGradientPrimary,
@@ -45,6 +47,7 @@ const foregrounds: Record<ButtonColor, string> = {
   destructive: theme.colors.foregroundContrastMain,
   "neutral-destructive": theme.colors.foregroundDestructive,
   positive: theme.colors.foregroundContrastMain,
+  transparent: theme.colors.foregroundMain,
   neutral: theme.colors.foregroundMain,
   ghost: theme.colors.foregroundMain,
   dark: theme.colors.foregroundContrastMain,
@@ -113,6 +116,7 @@ const StyledButton = styled("button", {
       destructive: perColorStyle("destructive"),
       "neutral-destructive": perColorStyle("neutral-destructive"),
       positive: perColorStyle("positive"),
+      transparent: perColorStyle("transparent"),
       neutral: perColorStyle("neutral"),
       ghost: perColorStyle("ghost"),
       dark: perColorStyle("dark"),
@@ -157,6 +161,7 @@ type ButtonProps = {
   "data-state"?: string;
 } & Omit<ComponentProps<"button">, "prefix">;
 
+//TODO: (#Webtir) Gradient variant might not be needed anymore. Consider removing it.
 export const Button = forwardRef(
   (
     {

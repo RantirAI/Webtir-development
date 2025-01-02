@@ -10,7 +10,7 @@ import { textVariants } from "./text";
 export const Toolbar = styled(ToolbarPrimitive.Root, {
   display: "flex",
   height: theme.spacing[15],
-  background: theme.colors.backgroundTopbar,
+  background: theme.colors.panel,
   color: theme.colors.foregroundContrastMain,
   alignItems: "center",
   gap: theme.spacing[5],
@@ -45,6 +45,7 @@ export const toggleItemStyle = css(textVariants.labelsTitleCase, {
   outline: "none",
   // center icon
   display: "flex",
+  gap: theme.spacing[3],
   justifyContent: "center",
   alignItems: "center",
   // prevent shrinking inside flex box
@@ -53,14 +54,15 @@ export const toggleItemStyle = css(textVariants.labelsTitleCase, {
   minWidth: theme.spacing["15"],
   minHeight: theme.spacing["15"],
 
-  color: "inherit",
+  color: theme.colors.foregroundSubtle,
   background: "transparent",
   transition: "200ms background",
 
   "&:focus-visible": toolbarItemFocusRing,
-  "&:hover, &[data-state=on], &[data-state=open], &[aria-checked=true]": {
-    background: theme.colors.backgroundTopbarHover,
-  },
+  // TODO: (#Webtir) Add hover state color on topbar elements
+  /*"&:hover, &[data-state=on], &[data-state=open], &[aria-checked=true]": {
+    color: theme.colors.foregroundMain,
+  },*/
   variants: {
     // Just for story
     focused: {
@@ -70,7 +72,7 @@ export const toggleItemStyle = css(textVariants.labelsTitleCase, {
       subtle: {
         color: theme.colors.foregroundSubtle,
         "&:hover, &[data-state=on], &[aria-checked=true]": {
-          color: "inherit",
+          color: theme.colors.foregroundMain,
         },
       },
       preview: {

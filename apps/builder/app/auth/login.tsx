@@ -7,7 +7,7 @@ import {
   Text,
   theme,
 } from "@webstudio-is/design-system";
-import { GithubIcon, GoogleIcon, WebstudioIcon } from "@webstudio-is/icons";
+import { GithubIcon, GoogleIcon, WebtirIcon } from "@webstudio-is/icons";
 import { LoginButton } from "./login-button";
 import { Form } from "@remix-run/react";
 import { authPath } from "~/shared/router-utils";
@@ -64,9 +64,9 @@ export const Login = ({
         as="aside"
         className={sidebarStyle()}
       >
-        <a href="https://webstudio.is" aria-label="Go to webstudio.is">
+        <a href="https://webtir.com/" aria-label="Go to webtir.com">
           <AccessibleIcon label="Logo">
-            <WebstudioIcon width="112" height="84" />
+            <WebtirIcon width="112" height="84" />
           </AccessibleIcon>
         </a>
       </Flex>

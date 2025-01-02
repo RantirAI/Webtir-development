@@ -5,13 +5,13 @@ import {
   ToolbarToggleGroup,
   ToolbarToggleItem,
 } from "@webstudio-is/design-system";
-import { useCallback, useRef } from "react";
-import { CascadeIndicator } from "./cascade-indicator";
-import { BpStarOffIcon, BpStarOnIcon } from "@webstudio-is/icons";
+import { useRef } from "react";
+import { StarIcon, StarSubtleIcon } from "@webstudio-is/icons";
 import { useSetInitialCanvasWidth } from ".";
 import { selectedBreakpointIdStore } from "~/shared/nano-states";
 import { groupBreakpoints, isBaseBreakpoint } from "~/shared/breakpoints";
 import type { Breakpoint, Breakpoints } from "@webstudio-is/project-build";
+import { getBreakpointIcon } from "~/shared/breakpoints/get-breakpoint-icon";
 
 const getTooltipContent = (breakpoint: Breakpoint) => {
   if (isBaseBreakpoint(breakpoint)) {
@@ -57,7 +57,6 @@ export const BreakpointsSelector = ({
 }: BreakpointsSelector) => {
   const refs = useRef(new Map<string, HTMLButtonElement>());
   const setInitialCanvasWidth = useSetInitialCanvasWidth();
-  const getButtonById = useCallback((id: string) => refs.current.get(id), []);
 
   return (
     <Toolbar>
@@ -77,6 +76,8 @@ export const BreakpointsSelector = ({
       >
         {groupBreakpoints(Array.from(breakpoints.values())).map(
           (breakpoint) => {
+            const breakpointSelected = breakpoint.id === selectedBreakpoint.id;
+
             return (
               <EnhancedTooltip
                 key={breakpoint.id}
@@ -94,23 +95,24 @@ export const BreakpointsSelector = ({
                   }}
                   value={breakpoint.id}
                 >
-                  {breakpoint.minWidth ??
-                    breakpoint.maxWidth ??
-                    (breakpoint.id === selectedBreakpoint.id ? (
-                      <BpStarOnIcon size={22} />
-                    ) : (
-                      <BpStarOffIcon size={22} />
-                    ))}
+                  {getBreakpointIcon({
+                    maxWidth: breakpoint.maxWidth,
+                    isSelected: breakpointSelected,
+                  })}
+                  {breakpoint.minWidth ? (
+                    <Text color="subtle">{breakpoint.minWidth}</Text>
+                  ) : breakpoint.maxWidth ? (
+                    <Text color="subtle">{breakpoint.maxWidth}</Text>
+                  ) : breakpointSelected ? (
+                    <StarIcon size={16} fill="none" />
+                  ) : (
+                    <StarSubtleIcon size={16} fill="none" />
+                  )}
                 </ToolbarToggleItem>
               </EnhancedTooltip>
             );
           }
         )}
-        <CascadeIndicator
-          getButtonById={getButtonById}
-          selectedBreakpoint={selectedBreakpoint}
-          breakpoints={breakpoints}
-        />
       </ToolbarToggleGroup>
     </Toolbar>
   );

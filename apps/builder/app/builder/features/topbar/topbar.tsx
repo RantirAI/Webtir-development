@@ -20,14 +20,28 @@ import {
   BreakpointsPopover,
 } from "../breakpoints";
 import { ViewMode } from "./view-mode";
+import { CopyNewIcon } from "@webstudio-is/icons";
 
 const topbarContainerStyle = css({
+  position: "fixed",
+  minWidth: "fit-content",
+  justifyContent: "space-between",
+  /*TODO: (#Webtir) Next two lines are temporary solution until side navbars are not updated*/
+  width: "calc(100% - 239px - 239px - 41px - 24px)",
+  marginLeft: 20.5,
+  zIndex: "999",
+  transform: "translateX(-50%)",
+  left: "50%",
+  top: theme.spacing[5],
   display: "flex",
-  background: theme.colors.backgroundTopbar,
-  height: theme.spacing[15],
-  boxShadow: `inset 0 -1px 0 0 ${theme.colors.panelOutline}`,
-  paddingRight: theme.spacing[9],
-  color: theme.colors.foregroundContrastMain,
+  /*TODO: (#Webtir) #paletteUpdates backgroundTopbar color is not used anymore*/
+  /*background: theme.colors.backgroundTopbar,*/
+  background: theme.colors.panel,
+  height: theme.spacing[16],
+  boxShadow: "inset 0 0 0 1px rgba(0,0,0,.1)",
+  paddingInline: theme.spacing[3],
+  color: "inherit",
+  borderRadius: theme.borderRadius[7],
 });
 
 type TopbarProps = {
@@ -41,39 +55,59 @@ export const Topbar = ({ gridArea, project, publish }: TopbarProps) => {
 
   return (
     <nav className={topbarContainerStyle({ css: { gridArea } })}>
-      <Flex grow={false} shrink={false}>
-        <Menu publish={publish} />
+      <Flex>
+        <Flex grow={false} shrink={false}>
+          <Menu publish={publish} />
+        </Flex>
+        <Flex
+          css={{
+            px: theme.spacing[9],
+            // TODO: (#Webtir) Add #F0F0F0 to the color palette
+            backgroundColor: "#F0F0F0",
+            margin: theme.spacing[3],
+            padding: theme.spacing[3],
+            borderRadius: theme.borderRadius[3],
+          }}
+          align="center"
+        >
+          <Flex
+            css={{
+              backgroundColor: theme.colors.panel,
+              padding: theme.spacing[3],
+              borderRadius: theme.borderRadius[3],
+              gap: theme.spacing[3],
+            }}
+          >
+            <Text variant="labelsTitleCase" color="main" truncate>
+              {page?.name ?? ""}
+            </Text>
+            <CopyNewIcon color="transparent" />
+          </Flex>
+          <BreakpointsPopover />
+        </Flex>
       </Flex>
-      <Flex
-        css={{ px: theme.spacing[9], maxWidth: theme.spacing[24] }}
-        align="center"
-      >
-        <Text variant="labelsTitleCase" color="contrast" truncate>
-          {page?.name ?? ""}
-        </Text>
-      </Flex>
-      <Flex css={{ minWidth: theme.spacing[23] }}>
-        <BreakpointsPopover />
-      </Flex>
-      <Flex grow align="center" justify="center">
+      <Flex align="center" justify="center">
         <BreakpointsSelectorContainer />
       </Flex>
-      <Toolbar>
-        <ToolbarToggleGroup
-          type="single"
-          css={{
-            justifyContent: "flex-end",
-            gap: theme.spacing[5],
-            width: theme.spacing[30],
-          }}
-        >
-          <ViewMode />
-          <SyncStatus />
-          <PreviewButton />
-          <ShareButton projectId={project.id} />
-          <PublishButton projectId={project.id} />
-        </ToolbarToggleGroup>
-      </Toolbar>
+      <Flex align="center" justify="end">
+        <Toolbar>
+          <ToolbarToggleGroup
+            type="single"
+            css={{
+              justifyContent: "flex-end",
+              gap: theme.spacing[5],
+              width: theme.spacing[30],
+              paddingRight: theme.spacing[2],
+            }}
+          >
+            <ViewMode />
+            <SyncStatus />
+            <PreviewButton />
+            <ShareButton projectId={project.id} />
+            <PublishButton projectId={project.id} />
+          </ToolbarToggleGroup>
+        </Toolbar>
+      </Flex>
     </nav>
   );
 };

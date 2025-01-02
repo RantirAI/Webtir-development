@@ -17,6 +17,7 @@ const subscribeIsOnline = () => {
   };
 };
 
+//TODO: (#Webtir) Update design
 export const SyncStatus = () => {
   const status = useStore(queueStatus);
   const isOnline = useStore(isOnlineStore);

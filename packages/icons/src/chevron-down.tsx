@@ -1,6 +1,8 @@
 import * as React from "react";
 import type { IconProps } from "./types";
 
+//TODO: (#Webtir) This icon probably has to be replaced with ChevronDownNewIcon.
+// Same thing for the other icons with "New" suffix
 export const ChevronDownIcon = React.forwardRef<SVGSVGElement, IconProps>(
   ({ color = "currentColor", ...props }, forwardedRef) => {
     return (

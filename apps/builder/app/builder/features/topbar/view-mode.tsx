@@ -7,6 +7,7 @@ import {
 import { CloudIcon } from "@webstudio-is/icons";
 import { useAuthPermit } from "~/shared/nano-states";
 
+//TODO: (#Webtir) Update design
 export const ViewMode = () => {
   const [authPermit] = useAuthPermit();
 
