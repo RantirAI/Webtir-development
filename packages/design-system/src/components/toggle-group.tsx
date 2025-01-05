@@ -57,7 +57,7 @@ export const ToggleGroup = styled(BaseToggleGroup, {
   alignItems: "center",
   padding: 1,
   background: theme.colors.backgroundControls,
-  border: `1px solid ${theme.colors.borderMain}`,
+  border: `1px solid ${theme.colors.borderNeutral}`,
   borderRadius: theme.borderRadius[4],
 });
 

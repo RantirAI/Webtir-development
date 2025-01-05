@@ -27,7 +27,7 @@ const style = css({
   display: "flex",
   alignItems: "center",
   background: theme.colors.backgroundControls,
-  border: `1px solid ${theme.colors.borderMain}`,
+  border: `1px solid ${theme.colors.borderNeutral}`,
   borderRadius: theme.borderRadius[4],
   paddingRight: theme.spacing[1],
   paddingLeft: theme.spacing[1],

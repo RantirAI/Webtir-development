@@ -17,7 +17,7 @@ const cardStyle = css({
   width: theme.spacing[19],
   height: theme.spacing[19],
   border: `1px solid`,
-  borderColor: theme.colors.borderMain,
+  borderColor: theme.colors.borderNeutral,
   borderRadius: theme.borderRadius[2],
   userSelect: "none",
   color: theme.colors.foregroundIconMain,

@@ -74,7 +74,7 @@ export const IconButton = styled("button", {
 
       preset: {
         backgroundColor: theme.colors.backgroundPresetMain,
-        borderColor: theme.colors.borderMain,
+        borderColor: "transparent",
         color: theme.colors.foregroundMain,
         "&:hover, &[data-hovered=true]": {
           backgroundColor: theme.colors.backgroundPresetHover,

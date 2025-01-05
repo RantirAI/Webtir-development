@@ -129,9 +129,9 @@ export const DeprecatedTextFieldContainer = styled("div", {
     backgroundColor: theme.colors.slate2,
   },
   "&:has(input:read-only)": {
-    backgroundColor: theme.colors.slate2,
+    backgroundColor: "transparent",
     "&:focus": {
-      boxShadow: `inset 0px 0px 0px 1px ${theme.colors.slate7}`,
+      boxShadow: `inset 0px 0px 0px 1px ${theme.colors.borderNeutral}`,
     },
   },
   variants: {

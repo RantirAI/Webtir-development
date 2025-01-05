@@ -36,7 +36,7 @@ const containerStyle = css({
   padding: theme.spacing[4],
   width: "fit-content",
   borderRadius: theme.borderRadius[4],
-  outline: `1px solid ${theme.colors.borderMain}`,
+  outline: `1px solid ${theme.colors.borderNeutral}`,
   outlineOffset: "-1px",
   gridTemplateColumns: "repeat(3, 1fr)",
   gridTemplateAreas: `

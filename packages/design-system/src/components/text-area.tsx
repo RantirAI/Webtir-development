@@ -16,7 +16,7 @@ const style = css(textVariants.regular, {
   lineHeight: `${LINE_HEIGHT}px`,
   color: theme.colors.foregroundMain,
   borderRadius: theme.borderRadius[4],
-  border: `${BORDER}px solid ${theme.colors.borderMain}`,
+  border: `${BORDER}px solid ${theme.colors.borderNeutral}`,
   background: theme.colors.backgroundControls,
   paddingRight: theme.spacing[4],
   paddingLeft: theme.spacing[3],

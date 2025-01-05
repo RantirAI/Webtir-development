@@ -62,7 +62,7 @@ const containerStyle = css({
   minWidth: 0,
   alignItems: "center",
   borderRadius: theme.borderRadius[4],
-  border: `solid 1px ${theme.colors.borderMain}`,
+  border: `solid 1px ${theme.colors.borderNeutral}`,
   backgroundColor: theme.colors.backgroundControls,
   "&:has([data-input-field-input]:focus), &:focus": {
     outline: `solid 2px ${theme.colors.borderFocus}`,
