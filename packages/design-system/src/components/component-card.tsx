@@ -22,7 +22,7 @@ const cardStyle = css({
   userSelect: "none",
   color: theme.colors.foregroundIconMain,
   cursor: "grab",
-  background: theme.colors.backgroundPanel,
+  background: theme.colors.panel,
   "&:hover, &[data-state=hover]": {
     background: theme.colors.backgroundHover,
   },

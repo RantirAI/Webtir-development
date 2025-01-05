@@ -9,7 +9,7 @@ import { textVariants } from "./text";
 
 export const Toolbar = styled(ToolbarPrimitive.Root, {
   display: "flex",
-  height: theme.spacing[15],
+  height: theme.spacing[14],
   background: theme.colors.panel,
   color: theme.colors.foregroundContrastMain,
   alignItems: "center",

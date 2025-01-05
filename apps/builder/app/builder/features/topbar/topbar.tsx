@@ -10,7 +10,7 @@ import {
 import type { Project } from "@webstudio-is/project";
 import type { Publish } from "~/shared/pubsub";
 import { selectedPageStore } from "~/shared/nano-states";
-import { PreviewButton } from "./preview";
+import { PreviewToggle } from "./preview";
 import { ShareButton } from "./share";
 import { PublishButton } from "./publish";
 import { SyncStatus } from "./sync-status";
@@ -26,10 +26,7 @@ const topbarContainerStyle = css({
   position: "fixed",
   minWidth: "fit-content",
   justifyContent: "space-between",
-  /*TODO: (#Webtir) Next two lines are temporary solution until side navbars are not updated*/
-  width: "calc(100% - 239px - 239px - 41px - 24px)",
-  marginLeft: 20.5,
-  zIndex: "999",
+  width: theme.spacing[30],
   transform: "translateX(-50%)",
   left: "50%",
   top: theme.spacing[5],
@@ -37,7 +34,7 @@ const topbarContainerStyle = css({
   /*TODO: (#Webtir) #paletteUpdates backgroundTopbar color is not used anymore*/
   /*background: theme.colors.backgroundTopbar,*/
   background: theme.colors.panel,
-  height: theme.spacing[16],
+  height: theme.spacing[15],
   boxShadow: "inset 0 0 0 1px rgba(0,0,0,.1)",
   paddingInline: theme.spacing[3],
   color: "inherit",
@@ -54,7 +51,11 @@ export const Topbar = ({ gridArea, project, publish }: TopbarProps) => {
   const page = useStore(selectedPageStore);
 
   return (
-    <nav className={topbarContainerStyle({ css: { gridArea } })}>
+    <nav
+      className={topbarContainerStyle({
+        css: { gridArea, gap: theme.spacing[5] },
+      })}
+    >
       <Flex>
         <Flex grow={false} shrink={false}>
           <Menu publish={publish} />
@@ -96,13 +97,12 @@ export const Topbar = ({ gridArea, project, publish }: TopbarProps) => {
             css={{
               justifyContent: "flex-end",
               gap: theme.spacing[5],
-              width: theme.spacing[30],
               paddingRight: theme.spacing[2],
             }}
           >
             <ViewMode />
             <SyncStatus />
-            <PreviewButton />
+            <PreviewToggle />
             <ShareButton projectId={project.id} />
             <PublishButton projectId={project.id} />
           </ToolbarToggleGroup>
@@ -110,4 +110,19 @@ export const Topbar = ({ gridArea, project, publish }: TopbarProps) => {
       </Flex>
     </nav>
   );
+};
+
+const topbarEmptySpaceStyle = css({
+  display: "flex",
+  height: theme.spacing[19],
+  backgroundColor: theme.colors.backgroundCanvas,
+});
+
+type TopbarEmptySpaceProps = {
+  gridArea: TopbarProps["gridArea"];
+};
+
+// This component is used to preserve space for the Topbar. Without it, canvas will collide with the Topbar
+export const TopbarEmptySpace = ({ gridArea }: TopbarEmptySpaceProps) => {
+  return <span className={topbarEmptySpaceStyle({ css: { gridArea } })} />;
 };

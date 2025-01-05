@@ -1,5 +1,5 @@
 import { useStore } from "@nanostores/react";
-import { theme, Toaster, css } from "@webstudio-is/design-system";
+import { Toaster, css, theme } from "@webstudio-is/design-system";
 import {
   scaleStore,
   useCanvasWidth,

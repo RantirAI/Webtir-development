@@ -47,7 +47,6 @@ const StyledTabsList = styled(TabsPrimitive.List, {
   flexDirection: "column",
   alignItems: "center",
   outline: "none",
-  borderRight: `1px solid  ${theme.colors.borderMain}`,
   flexGrow: 1,
 });
 
@@ -68,12 +67,12 @@ SidebarTabsList.displayName = "SidebarTabsList";
 export const SidebarTabsContent = styled(TabsPrimitive.Content, {
   flexGrow: 1,
   position: "absolute",
+  borderTopLeftRadius: theme.borderRadius[7],
+  borderTopRightRadius: theme.borderRadius[7],
+  boxShadow: "inset 0 0 0 1px rgba(0,0,0,.1)",
   top: 0,
-  left: "100%",
+  left: `calc(100% + ${theme.spacing[5]})`,
   height: "100%",
-  bc: theme.colors.backgroundPanel,
+  background: theme.colors.panel,
   outline: "none",
-  '&[data-state="active"]': {
-    borderRight: `1px solid ${theme.colors.borderMain}`,
-  },
 });

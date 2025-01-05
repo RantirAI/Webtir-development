@@ -10,7 +10,6 @@ import { useSubscribe, type Publish } from "~/shared/pubsub";
 import { useDragAndDropState } from "~/shared/nano-states";
 import { panels } from "./panels";
 import type { TabName } from "./types";
-import { useClientSettings } from "~/builder/shared/client-settings";
 import { Flex } from "@webstudio-is/design-system";
 import { theme } from "@webstudio-is/design-system";
 import { BugIcon } from "@webstudio-is/icons";
@@ -23,9 +22,8 @@ type SidebarLeftProps = {
 
 export const SidebarLeft = ({ publish }: SidebarLeftProps) => {
   const [dragAndDropState] = useDragAndDropState();
-  const [activeTab, setActiveTab] = useState<TabName>("none");
+  const [activeTab, setActiveTab] = useState<TabName>("components");
   const { TabContent } = activeTab === "none" ? none : panels[activeTab];
-  const [clientSettings] = useClientSettings();
 
   useSubscribe("clickCanvas", () => {
     setActiveTab("none");
@@ -34,15 +32,7 @@ export const SidebarLeft = ({ publish }: SidebarLeftProps) => {
     setActiveTab("none");
   });
 
-  const enabledPanels = (Object.keys(panels) as Array<TabName>).filter(
-    (panel) => {
-      switch (panel) {
-        case "navigator":
-          return clientSettings.navigatorLayout === "docked";
-      }
-      return true;
-    }
-  );
+  const enabledPanels = Object.keys(panels) as Array<TabName>;
 
   return (
     <Flex grow>
@@ -50,6 +40,12 @@ export const SidebarLeft = ({ publish }: SidebarLeftProps) => {
         <SidebarTabsList>
           {enabledPanels.map((tabName: TabName) => (
             <SidebarTabsTrigger
+              css={{
+                ["&:first-child"]: {
+                  borderTopLeftRadius: theme.borderRadius[7],
+                  borderTopRightRadius: theme.borderRadius[7],
+                },
+              }}
               aria-label={tabName}
               key={tabName}
               value={tabName}
@@ -61,7 +57,7 @@ export const SidebarLeft = ({ publish }: SidebarLeftProps) => {
             </SidebarTabsTrigger>
           ))}
         </SidebarTabsList>
-        <Box css={{ borderRight: `1px solid  ${theme.colors.borderMain}` }}>
+        <Box>
           <SidebarTabsTrigger
             as={"button"}
             aria-label={"Report bug"}

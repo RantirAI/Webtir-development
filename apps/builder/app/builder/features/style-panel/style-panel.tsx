@@ -53,7 +53,7 @@ export const StylePanel = ({ selectedInstance, publish }: StylePanelProps) => {
           pb: theme.spacing[9],
         }}
       >
-        <Text css={{ py: theme.spacing[7] }} variant="titles">
+        <Text css={{ py: theme.spacing[7] }} variant="labelsTitleCase">
           Style Sources
         </Text>
         <StyleSourcesSection />

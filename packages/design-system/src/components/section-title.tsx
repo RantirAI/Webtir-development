@@ -18,6 +18,7 @@ import { Button } from "./button";
 import { cssVars } from "@webstudio-is/css-vars";
 import { ArrowFocus } from "./primitives/arrow-focus";
 import { Label, isLabelButton } from "./label";
+import { typography } from "../__generated__/figma-design-tokens";
 
 const buttonContentColor = cssVars.define("button-content-color");
 const labelTextColor = cssVars.define("label-text-color");
@@ -194,6 +195,7 @@ export const SectionTitleLabel = forwardRef(
           color: state === "closed" ? cssVars.use(labelTextColor) : undefined,
           ...commonCss,
           ...css,
+          ...typography.labelsTitleCase,
           // When we use a SectionTitle button, we can't directly render a label inside it.
           // Instead, we need to render the label using a div that has position:absolute and pointer-events:none
           // However, if the label itself is a button, we need to make sure that it remains clickable.

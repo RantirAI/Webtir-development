@@ -34,7 +34,7 @@ const Breadcrumb = ({ children, onClick }: BreadcrumbProps) => {
       >
         {children}
       </DeprecatedButton>
-      <ChevronRightIcon color="white" />
+      <ChevronRightIcon />
     </>
   );
 };

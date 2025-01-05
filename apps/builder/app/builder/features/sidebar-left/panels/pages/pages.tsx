@@ -184,7 +184,6 @@ const PagesPanel = ({
         // z-index needed for page settings animation
         zIndex: 1,
         flexGrow: 1,
-        background: theme.colors.backgroundPanel,
       }}
       direction="column"
     >

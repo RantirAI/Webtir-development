@@ -4,6 +4,7 @@ import {
   Separator,
   PanelTitle,
   TitleSuffixSpacer,
+  Text,
 } from "@webstudio-is/design-system";
 import { CrossIcon } from "@webstudio-is/icons";
 
@@ -15,7 +16,11 @@ type HeaderProps = {
 export const Header = ({ title, suffix }: HeaderProps) => {
   return (
     <>
-      <PanelTitle suffix={suffix}>{title}</PanelTitle>
+      <PanelTitle suffix={suffix}>
+        <Text variant="labelsTitleCase" color="main" truncate>
+          {title}
+        </Text>
+      </PanelTitle>
       <Separator />
     </>
   );

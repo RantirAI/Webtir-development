@@ -11,7 +11,7 @@ export const separatorStyle = css({
   margin: 0,
   flexShrink: 0,
   alignSelf: "stretch",
-  backgroundColor: theme.colors.borderMain,
+  backgroundColor: theme.colors.borderNeutral,
   cursor: "default",
   '&[data-orientation="horizontal"]': { height: theme.spacing[1] },
   '&[data-orientation="vertical"]': { width: theme.spacing[1] },

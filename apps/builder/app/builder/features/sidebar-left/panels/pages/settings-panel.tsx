@@ -8,7 +8,7 @@ import { theme } from "@webstudio-is/design-system";
 
 const CollapsibleRoot = styled(Collapsible.Root, {
   position: "absolute",
-  left: "100%",
+  left: `calc(100% + ${theme.spacing[5]})`,
   top: 0,
   bottom: 0,
   display: "flex",
@@ -65,8 +65,11 @@ export const SettingsPanel = ({
           css={{
             flexGrow: 1,
             width: theme.spacing[35],
-            background: theme.colors.backgroundPanel,
-            borderRight: `1px solid ${theme.colors.slate7}`,
+            background: theme.colors.panel,
+            borderTopLeftRadius: theme.borderRadius[7],
+            borderTopRightRadius: theme.borderRadius[7],
+            boxShadow: "inset 0 0 0 1px rgba(0,0,0,.1)",
+            height: "100%",
             position: "relative",
           }}
         >

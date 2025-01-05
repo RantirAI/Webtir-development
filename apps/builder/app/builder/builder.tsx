@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from "react";
 import { useUnmount } from "react-use";
-import { type Publish, usePublish } from "~/shared/pubsub";
+import { usePublish } from "~/shared/pubsub";
 import type { Build } from "@webstudio-is/project-build";
 import type { Project } from "@webstudio-is/project";
 import { theme, Box, type CSS, Flex, Grid } from "@webstudio-is/design-system";
@@ -8,7 +8,7 @@ import type { AuthPermit } from "@webstudio-is/trpc-interface/index.server";
 import { registerContainers, useBuilderStore } from "~/shared/sync";
 import { useSyncServer } from "./shared/sync/sync-server";
 import { useSharedShortcuts } from "~/shared/shortcuts";
-import { SidebarLeft, Navigator } from "./features/sidebar-left";
+import { SidebarLeft } from "./features/sidebar-left";
 import { Inspector } from "./features/inspector";
 import { isCanvasPointerEventsEnabledStore } from "./shared/nano-states";
 import { Topbar } from "./features/topbar";
@@ -45,6 +45,7 @@ import type { Asset } from "@webstudio-is/asset-uploader";
 import { BlockingAlerts } from "./features/blocking-alerts";
 import { useStore } from "@nanostores/react";
 import { useSyncPageUrl } from "~/shared/pages";
+import { TopbarEmptySpace } from "~/builder/features/topbar/topbar";
 
 registerContainers();
 
@@ -93,6 +94,11 @@ const SidePanel = ({
     <Box
       as="aside"
       css={{
+        position: "fixed",
+        top: theme.spacing[5],
+        borderTopLeftRadius: theme.borderRadius[7],
+        borderTopRightRadius: theme.borderRadius[7],
+        boxShadow: "inset 0 0 0 1px rgba(0,0,0,.1)",
         gridArea,
         display: isPreviewMode ? "none" : "flex",
         flexDirection: "column",
@@ -100,12 +106,9 @@ const SidePanel = ({
         fg: 0,
         // Left sidebar tabs won't be able to pop out to the right if we set overflowX to auto.
         //overflowY: "auto",
-        bc: theme.colors.backgroundPanel,
-        height: "100%",
+        background: theme.colors.panel,
+        height: `calc(100% - ${theme.spacing[13]} + 1px)`,
         ...css,
-        "&:last-of-type": {
-          borderLeft: `1px solid  ${theme.colors.borderMain}`,
-        },
       }}
     >
       {children}
@@ -140,33 +143,33 @@ const getChromeLayout = ({
 }) => {
   if (isPreviewMode) {
     return {
-      gridTemplateColumns: "auto 1fr",
+      gridTemplateColumns: "1fr",
       gridTemplateAreas: `
-            "header header"
-            "sidebar main"
-            "footer footer"
-          `,
+        "header"
+        "main"
+        "footer"
+      `,
     };
   }
 
   if (navigatorLayout === "undocked") {
     return {
-      gridTemplateColumns: `auto ${theme.spacing[30]} 1fr ${theme.spacing[30]}`,
+      gridTemplateColumns: `auto 1fr auto`,
       gridTemplateAreas: `
-            "header header header header"
-            "sidebar navigator main inspector"
-            "footer footer footer footer"
-          `,
+        "header header header"
+        "sidebar main inspector"
+        "footer footer footer"
+      `,
     };
   }
 
   return {
-    gridTemplateColumns: `auto 1fr ${theme.spacing[30]}`,
+    gridTemplateColumns: `auto 1fr`,
     gridTemplateAreas: `
-          "header header header"
-          "sidebar main inspector"
-          "footer footer footer"
-        `,
+      "header header"
+      "sidebar main"
+      "footer footer"
+    `,
   };
 };
 
@@ -190,36 +193,6 @@ const ChromeWrapper = ({ children, isPreviewMode }: ChromeWrapperProps) => {
     >
       {children}
     </Grid>
-  );
-};
-
-type NavigatorPanelProps = {
-  isPreviewMode: boolean;
-  navigatorLayout: "docked" | "undocked";
-  publish: Publish;
-};
-
-const NavigatorPanel = ({
-  isPreviewMode,
-  navigatorLayout,
-  publish,
-}: NavigatorPanelProps) => {
-  if (navigatorLayout === "docked") {
-    return null;
-  }
-
-  return (
-    <SidePanel gridArea="navigator" isPreviewMode={isPreviewMode}>
-      <Box
-        css={{
-          borderRight: `1px solid ${theme.colors.borderMain}`,
-          width: theme.spacing[30],
-          height: "100%",
-        }}
-      >
-        <Navigator isClosable={false} publish={publish} />
-      </Box>
-    </SidePanel>
   );
 };
 
@@ -299,6 +272,7 @@ export const Builder = ({
   return (
     <ChromeWrapper isPreviewMode={isPreviewMode}>
       <Topbar gridArea="header" project={project} publish={publish} />
+      <TopbarEmptySpace gridArea="header" />
       <Main>
         <Workspace onTransitionEnd={onTransitionEnd} publish={publish}>
           <CanvasIframe
@@ -314,18 +288,21 @@ export const Builder = ({
           />
         </Workspace>
       </Main>
-      <SidePanel gridArea="sidebar" isPreviewMode={isPreviewMode}>
+      <SidePanel
+        gridArea="sidebar"
+        isPreviewMode={isPreviewMode}
+        css={{ left: theme.spacing[5] }}
+      >
         <SidebarLeft publish={publish} />
       </SidePanel>
-      <NavigatorPanel
-        isPreviewMode={isPreviewMode}
-        navigatorLayout={navigatorLayout}
-        publish={publish}
-      />
       <SidePanel
         gridArea="inspector"
         isPreviewMode={isPreviewMode}
-        css={{ overflow: "hidden" }}
+        css={{
+          overflow: "hidden",
+          right: theme.spacing[5],
+          width: theme.spacing[30],
+        }}
       >
         <Inspector publish={publish} navigatorLayout={navigatorLayout} />
       </SidePanel>

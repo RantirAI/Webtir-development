@@ -111,11 +111,25 @@ export const Inspector = ({ publish, navigatorLayout }: InspectorProps) => {
           asChild
         >
           <Flex direction="column">
-            <PanelTabsList>
+            <PanelTabsList css={{ margin: theme.spacing[5] }}>
               {isStyleTabVisible && (
-                <PanelTabsTrigger value="style">Style</PanelTabsTrigger>
+                <PanelTabsTrigger
+                  value="style"
+                  css={{ width: "50%", textAlign: "center" }}
+                >
+                  <Text variant="labelsTitleCase" color="main" truncate>
+                    Style
+                  </Text>
+                </PanelTabsTrigger>
               )}
-              <PanelTabsTrigger value="settings">Settings</PanelTabsTrigger>
+              <PanelTabsTrigger
+                value="settings"
+                css={{ width: "50%", textAlign: "center" }}
+              >
+                <Text variant="labelsTitleCase" color="main" truncate>
+                  Settings
+                </Text>
+              </PanelTabsTrigger>
             </PanelTabsList>
             <PanelTabsContent value="style" css={contentStyle} tabIndex={-1}>
               <InstanceInfo instance={selectedInstance} />
