@@ -20,7 +20,7 @@ import {
   BreakpointsPopover,
 } from "../breakpoints";
 import { ViewMode } from "./view-mode";
-import { CopyNewIcon } from "@webstudio-is/icons";
+import { CopyIcon } from "@webstudio-is/icons";
 
 const topbarContainerStyle = css({
   position: "fixed",
@@ -82,7 +82,7 @@ export const Topbar = ({ gridArea, project, publish }: TopbarProps) => {
             <Text variant="labelsTitleCase" color="main" truncate>
               {page?.name ?? ""}
             </Text>
-            <CopyNewIcon color="transparent" />
+            <CopyIcon color="black" />
           </Flex>
           <BreakpointsPopover />
         </Flex>
