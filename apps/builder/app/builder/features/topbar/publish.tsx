@@ -485,7 +485,7 @@ export const PublishButton = ({ projectId }: PublishProps) => {
           <FloatingPanelPopoverTrigger asChild>
             <Button disabled={isPublishDisabled} color="dark">
               <Flex gap="1">
-                <Text variant="regularBold" align="center">
+                <Text variant="labelsTitleCase" align="center">
                   Publish
                 </Text>
                 <RocketWhiteIcon color="transparent" />

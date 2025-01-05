@@ -36,7 +36,7 @@ export const BreakpointsPopoverToolbarButton = forwardRef<
   const roundedScale = Math.round(scale);
   return (
     <button ref={ref} {...props}>
-      <Value unit="PX" minWidth={55}>
+      <Value unit="PX" minWidth={50}>
         {Math.round(canvasWidth)}
       </Value>
       {roundedScale !== 100 && (

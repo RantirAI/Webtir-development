@@ -36,7 +36,7 @@ export const ShareButton = ({ projectId }: { projectId: Project["id"] }) => {
           <FloatingPanelPopoverTrigger asChild>
             <Button disabled={isShareDisabled} color="transparent">
               <Flex gap="1">
-                <Text variant="regularBold" align="center">
+                <Text variant="labelsTitleCase" align="center">
                   Share
                 </Text>
                 <ChevronDownIcon />
