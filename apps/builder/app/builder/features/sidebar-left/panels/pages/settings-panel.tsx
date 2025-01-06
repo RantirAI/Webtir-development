@@ -68,7 +68,7 @@ export const SettingsPanel = ({
             background: theme.colors.panel,
             borderTopLeftRadius: theme.borderRadius[7],
             borderTopRightRadius: theme.borderRadius[7],
-            boxShadow: "inset 0 0 0 1px ${theme.colors.borderNeutral}",
+            boxShadow: `inset 0 0 0 1px ${theme.colors.borderNeutral}`,
             height: "100%",
             position: "relative",
           }}
