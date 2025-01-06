@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from "react";
 import { useUnmount } from "react-use";
-import { usePublish } from "~/shared/pubsub";
+import { type Publish, usePublish } from "~/shared/pubsub";
 import type { Build } from "@webstudio-is/project-build";
 import type { Project } from "@webstudio-is/project";
 import { theme, Box, type CSS, Flex, Grid } from "@webstudio-is/design-system";
@@ -8,7 +8,7 @@ import type { AuthPermit } from "@webstudio-is/trpc-interface/index.server";
 import { registerContainers, useBuilderStore } from "~/shared/sync";
 import { useSyncServer } from "./shared/sync/sync-server";
 import { useSharedShortcuts } from "~/shared/shortcuts";
-import { SidebarLeft } from "./features/sidebar-left";
+import { SidebarLeft, Navigator } from "./features/sidebar-left";
 import { Inspector } from "./features/inspector";
 import { isCanvasPointerEventsEnabledStore } from "./shared/nano-states";
 import { Topbar } from "./features/topbar";
@@ -81,7 +81,7 @@ type SidePanelProps = {
   children: JSX.Element | Array<JSX.Element>;
   isPreviewMode: boolean;
   css?: CSS;
-  gridArea: "inspector" | "sidebar" | "navigator";
+  gridArea: "inspector" | "sidebar";
 };
 
 const SidePanel = ({
@@ -196,6 +196,39 @@ const ChromeWrapper = ({ children, isPreviewMode }: ChromeWrapperProps) => {
   );
 };
 
+type NavigatorPanelProps = {
+  isPreviewMode: boolean;
+  navigatorLayout: "docked" | "undocked";
+  publish: Publish;
+};
+
+const NavigatorPanel = ({
+  isPreviewMode,
+  navigatorLayout,
+  publish,
+}: NavigatorPanelProps) => {
+  if (navigatorLayout === "docked") {
+    return null;
+  }
+
+  return (
+    <SidePanel
+      gridArea="sidebar"
+      isPreviewMode={isPreviewMode}
+      css={{ left: theme.spacing[18] }}
+    >
+      <Box
+        css={{
+          width: theme.spacing[30],
+          height: "100%",
+        }}
+      >
+        <Navigator isClosable={false} publish={publish} />
+      </Box>
+    </SidePanel>
+  );
+};
+
 export type BuilderProps = {
   project: Project;
   build: Build;
@@ -291,10 +324,15 @@ export const Builder = ({
       <SidePanel
         gridArea="sidebar"
         isPreviewMode={isPreviewMode}
-        css={{ left: theme.spacing[5] }}
+        css={{ left: theme.spacing[5], zIndex: theme.zIndices[1] }}
       >
         <SidebarLeft publish={publish} />
       </SidePanel>
+      <NavigatorPanel
+        isPreviewMode={isPreviewMode}
+        navigatorLayout={navigatorLayout}
+        publish={publish}
+      />
       <SidePanel
         gridArea="inspector"
         isPreviewMode={isPreviewMode}
