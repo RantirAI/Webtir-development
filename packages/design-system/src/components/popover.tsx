@@ -9,7 +9,7 @@ export const PopoverPortal = Primitive.Portal;
 
 const contentStyle = css({
   border: `1px solid ${theme.colors.borderMain}`,
-  boxShadow: `${theme.shadows.menuDropShadow}, inset 0 0 0 1px ${theme.colors.borderMenuInner}`,
+  boxShadow: `${theme.shadows.menuDropShadow}, inset 0 0 0 1px ${theme.colors.borderNeutral}`,
   background: theme.colors.backgroundMenu,
   borderRadius: theme.borderRadius[6],
   padding: `${theme.spacing[5]} 0`,
@@ -23,7 +23,7 @@ const contentStyle = css({
 });
 
 const ArrowBackground = styled("path", { fill: theme.colors.backgroundMenu });
-const ArrowInnerBorder = styled("path", { fill: theme.colors.borderMenuInner });
+const ArrowInnerBorder = styled("path", { fill: theme.colors.borderNeutral });
 const ArrowOuterBorder = styled("path", { fill: theme.colors.borderMain });
 const ArrowSgv = styled("svg", { transform: "translateY(-3px)" });
 const Arrow = () => (

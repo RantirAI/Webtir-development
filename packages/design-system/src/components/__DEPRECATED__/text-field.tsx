@@ -25,7 +25,7 @@ const getTextFieldSuffixCssVars = (state: "focus" | "hover") => {
 
   return {
     [backgroundColorVar]: theme.colors.slate7,
-    [colorVar]: theme.colors.hiContrast,
+    [colorVar]: theme.colors.foregroundMain,
   };
 };
 
@@ -48,11 +48,11 @@ export const DeprecatedTextFieldInput = styled("input", {
   // Reset
   appearance: "none",
   borderWidth: "0",
-  backgroundColor: "transparent",
+  backgroundColor: theme.colors.backgroundControls,
   boxSizing: "border-box",
   fontFamily: "inherit",
   fontSize: "inherit",
-  color: "inherit",
+  color: theme.colors.foregroundMain,
   padding: "0",
   height: theme.spacing[9],
   flexGrow: 1,
@@ -110,7 +110,7 @@ export const DeprecatedTextFieldContainer = styled("div", {
   flexWrap: "wrap",
   alignItems: "center",
   backgroundColor: theme.colors.backgroundControls,
-  boxShadow: `inset 0 0 0 1px ${theme.colors.slate7}`,
+  border: `solid 1px ${theme.colors.borderNeutral}`,
   color: theme.colors.hiContrast,
   fontVariantNumeric: "tabular-nums",
   gap: theme.spacing[3],
@@ -129,7 +129,7 @@ export const DeprecatedTextFieldContainer = styled("div", {
     backgroundColor: theme.colors.slate2,
   },
   "&:has(input:read-only)": {
-    backgroundColor: "transparent",
+    backgroundColor: theme.colors.backgroundControls,
     "&:focus": {
       boxShadow: `inset 0px 0px 0px 1px ${theme.colors.borderNeutral}`,
     },
@@ -156,6 +156,7 @@ export const DeprecatedTextFieldContainer = styled("div", {
         },
       },
       button: {
+        color: theme.colors.foregroundSubtle,
         "&:hover": getTextFieldSuffixCssVars("hover"),
         "&:focus-within": getTextFieldSuffixCssVars("focus"),
       },

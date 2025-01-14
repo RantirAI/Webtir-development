@@ -1,12 +1,13 @@
 import {
   EnhancedTooltip,
   Text,
+  theme,
   Toolbar,
   ToolbarToggleGroup,
   ToolbarToggleItem,
 } from "@webstudio-is/design-system";
 import { useRef } from "react";
-import { StarIcon, StarSubtleIcon } from "@webstudio-is/icons";
+import { StarIcon } from "@webstudio-is/icons";
 import { useSetInitialCanvasWidth } from ".";
 import { selectedBreakpointIdStore } from "~/shared/nano-states";
 import { groupBreakpoints, isBaseBreakpoint } from "~/shared/breakpoints";
@@ -103,10 +104,16 @@ export const BreakpointsSelector = ({
                     <Text color="subtle">{breakpoint.minWidth}</Text>
                   ) : breakpoint.maxWidth ? (
                     <Text color="subtle">{breakpoint.maxWidth}</Text>
-                  ) : breakpointSelected ? (
-                    <StarIcon size={16} fill="none" />
                   ) : (
-                    <StarSubtleIcon size={16} fill="none" />
+                    <StarIcon
+                      size={16}
+                      fill="none"
+                      style={{
+                        color: breakpointSelected
+                          ? theme.colors.foregroundMain
+                          : theme.colors.foregroundSubtle,
+                      }}
+                    />
                   )}
                 </ToolbarToggleItem>
               </EnhancedTooltip>
