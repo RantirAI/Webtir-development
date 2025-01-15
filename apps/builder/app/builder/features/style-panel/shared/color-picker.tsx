@@ -29,12 +29,19 @@ extend([namesPlugin]);
 
 const pickerStyle = css({
   padding: theme.spacing[5],
-  background: theme.colors.panel,
+  background: theme.colors.backgroundMenu,
   // @todo this lib doesn't have another way to define styles for inputs
   // we should either submit a PR or replace it
+  boxShadow: "none !important",
   "& input": {
     color: theme.colors.hiContrast,
     background: theme.colors.loContrast,
+    // TODO: (#Webtir) Get rid of "!important" in attributes below
+    border: `1px solid ${theme.colors.borderNeutral} !important`,
+    boxShadow: "none !important",
+  },
+  "& label": {
+    color: `${theme.colors.foregroundMain} !important`,
   },
 });
 

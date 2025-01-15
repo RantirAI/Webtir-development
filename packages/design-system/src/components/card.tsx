@@ -27,7 +27,7 @@ export const Card = styled("div", {
     right: 0,
     bottom: 0,
     left: 0,
-    boxShadow: "inset 0 0 0 1px rgba(0,0,0,.1)",
+    boxShadow: `inset 0 0 0 1px ${theme.colors.slate5}`,
     borderRadius: theme.borderRadius[7],
     pointerEvents: "none",
   },
