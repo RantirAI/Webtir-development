@@ -19,8 +19,8 @@ export const PanelTabsList = styled(Primitive.List, {
   paddingTop: theme.spacing[3],
   paddingBottom: theme.spacing[3],
   px: theme.spacing[9],
-  // TODO: (#Webtir) Add #F0F0F0 to the color palette
-  backgroundColor: "#F0F0F0",
+  // TODO: (#Webtir) Would be better to use a variable
+  backgroundColor: "$slate4",
   margin: theme.spacing[3],
   padding: theme.spacing[3],
   borderRadius: theme.borderRadius[3],

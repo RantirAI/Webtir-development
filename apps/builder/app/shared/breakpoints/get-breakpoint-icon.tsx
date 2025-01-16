@@ -1,9 +1,5 @@
-import {
-  SmartphoneIcon,
-  SmartphoneSubtleIcon,
-  TabletIcon,
-  TabletSubtleIcon,
-} from "@webstudio-is/icons";
+import { SmartphoneIcon, TabletIcon } from "@webstudio-is/icons";
+import { theme } from "@webstudio-is/design-system";
 
 export const getBreakpointIcon = (breakpoint: {
   maxWidth?: number;
@@ -18,26 +14,40 @@ export const getBreakpointIcon = (breakpoint: {
   const tabletBreakpoint = 991;
 
   if (breakpoint.maxWidth === tabletBreakpoint) {
-    return breakpoint.isSelected ? (
-      <TabletIcon fill="none" size={16} />
-    ) : (
-      <TabletSubtleIcon fill="none" size={16} />
+    return (
+      <TabletIcon
+        size={16}
+        style={{
+          color: breakpoint.isSelected
+            ? theme.colors.foregroundMain
+            : theme.colors.foregroundSubtle,
+        }}
+      />
     );
   }
 
   if (breakpoint.maxWidth === mobileLandscapeBreakpoint) {
-    return breakpoint.isSelected ? (
-      <TabletIcon fill="none" transform="rotate(90 0 0)" />
-    ) : (
-      <TabletSubtleIcon fill="none" transform="rotate(90 0 0)" />
+    return (
+      <TabletIcon
+        transform="rotate(90 0 0)"
+        style={{
+          color: breakpoint.isSelected
+            ? theme.colors.foregroundMain
+            : theme.colors.foregroundSubtle,
+        }}
+      />
     );
   }
 
   if (breakpoint.maxWidth === mobilePortraitBreakpoint) {
-    return breakpoint.isSelected ? (
-      <SmartphoneIcon fill="none" />
-    ) : (
-      <SmartphoneSubtleIcon fill="none" />
+    return (
+      <SmartphoneIcon
+        style={{
+          color: breakpoint.isSelected
+            ? theme.colors.foregroundMain
+            : theme.colors.foregroundSubtle,
+        }}
+      />
     );
   }
 

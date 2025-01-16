@@ -80,6 +80,7 @@ export const MenuItemButton = styled("button", menuItemCss, {
   border: "none",
   boxSizing: "border-box",
   width: `calc(100% - ${itemMargin} * 2)`,
+  backgroundColor: "unset",
   "&:focus:not(:focus-visible)": { backgroundColor: "unset" },
   "&:hover:not([diabled])": {
     backgroundColor: theme.colors.backgroundItemMenuItemHover,
@@ -100,7 +101,7 @@ export const menuCss = css({
   borderRadius: theme.borderRadius[6],
   backgroundColor: theme.colors.backgroundMenu,
   border: `1px solid ${theme.colors.borderMain}`,
-  boxShadow: `${theme.shadows.menuDropShadow}, inset 0 0 0 1px ${theme.colors.borderMenuInner}`,
+  boxShadow: `${theme.shadows.menuDropShadow}, inset 0 0 0 1px ${theme.colors.borderNeutral}`,
   padding: `${menuPadding} 0`,
   variants: {
     width: {
@@ -124,7 +125,7 @@ export const subContentProps: Partial<ComponentProps<typeof SubContent>> = {
 // Arrow is hard to implement with just CSS,
 // so we implement it as a component
 const ArrowBackground = styled("path", { fill: theme.colors.backgroundMenu });
-const ArrowInnerBorder = styled("path", { fill: theme.colors.borderMenuInner });
+const ArrowInnerBorder = styled("path", { fill: theme.colors.borderNeutral });
 const ArrowOuterBorder = styled("path", { fill: theme.colors.borderMain });
 const ArrowSgv = styled("svg", { transform: "translateY(-3px)" });
 export const DropdownMenuArrow = () => (

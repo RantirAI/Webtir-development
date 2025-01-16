@@ -3,6 +3,7 @@ import {
   css,
   DropdownMenuTrigger,
   rawTheme,
+  theme,
   toggleItemStyle,
 } from "@webstudio-is/design-system";
 import { HamburgerMenuIcon, WebtirIcon } from "@webstudio-is/icons";
@@ -25,6 +26,7 @@ const innerContainerStyle = css({
   transformStyle: "preserve-3d",
   transition: "transform 200ms",
   transform: cssVars.use(containerTransformVar),
+  color: theme.colors.foregroundMain,
 });
 
 const faceStyle = css({
@@ -55,7 +57,10 @@ export const MenuButton = () => {
       aria-label="Menu Button"
     >
       <span className={innerContainerStyle()}>
-        <span className={faceStyle({ front: true })}>
+        <span
+          className={faceStyle({ front: true })}
+          color={theme.colors.foregroundMain}
+        >
           <WebtirIcon width="22" height="22" />
         </span>
         <span className={faceStyle({ back: true })}>

@@ -63,8 +63,8 @@ export const Topbar = ({ gridArea, project, publish }: TopbarProps) => {
         <Flex
           css={{
             px: theme.spacing[9],
-            // TODO: (#Webtir) Add #F0F0F0 to the color palette
-            backgroundColor: "#F0F0F0",
+            // TODO: (#Webtir) Would be better to use a variable
+            backgroundColor: "$slate4",
             margin: theme.spacing[3],
             padding: theme.spacing[3],
             borderRadius: theme.borderRadius[3],
@@ -77,12 +77,13 @@ export const Topbar = ({ gridArea, project, publish }: TopbarProps) => {
               padding: theme.spacing[3],
               borderRadius: theme.borderRadius[3],
               gap: theme.spacing[3],
+              color: theme.colors.foregroundMain,
             }}
           >
             <Text variant="labelsTitleCase" color="main" truncate>
               {page?.name ?? ""}
             </Text>
-            <CopyIcon color="black" />
+            <CopyIcon />
           </Flex>
           <BreakpointsPopover />
         </Flex>

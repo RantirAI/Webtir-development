@@ -39,7 +39,7 @@ export const StylePanel = ({ selectedInstance, publish }: StylePanelProps) => {
     return (
       <Box css={{ p: theme.spacing[5] }}>
         <Card css={{ p: theme.spacing[9], width: "100%" }}>
-          <Text>Select an instance on the canvas</Text>
+          <Text color="main">Select an instance on the canvas</Text>
         </Card>
       </Box>
     );
@@ -53,7 +53,11 @@ export const StylePanel = ({ selectedInstance, publish }: StylePanelProps) => {
           pb: theme.spacing[9],
         }}
       >
-        <Text css={{ py: theme.spacing[7] }} variant="labelsTitleCase">
+        <Text
+          css={{ py: theme.spacing[7] }}
+          variant="labelsTitleCase"
+          color="main"
+        >
           Style Sources
         </Text>
         <StyleSourcesSection />
