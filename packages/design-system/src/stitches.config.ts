@@ -117,7 +117,7 @@ import {
 } from "@radix-ui/colors";
 import type * as Stitches from "@stitches/react";
 export type { VariantProps } from "@stitches/react";
-import * as figma from "./__generated__/figma-design-tokens";
+import * as figma from "./figma-design-tokens";
 
 const spacing = {
   0: "0px",
@@ -615,7 +615,6 @@ export const darkTheme = createTheme({
     brandBackgroundGradient:
       "linear-gradient(180deg, #e63cfe 0%, #ffae3c 100%)",
     brandBackgroundPublishedContrast: "#ebfffc",
-    brandBackgroundDashboard: "#ededed",
     brandBackgroundRegularButtonSelected:
       "linear-gradient(180deg, #bffeec 0%, #fbfff6 100%)",
     brandBackgroundCtaButton:

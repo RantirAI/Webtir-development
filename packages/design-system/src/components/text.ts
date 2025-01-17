@@ -1,5 +1,5 @@
 import { css, theme, styled } from "../stitches.config";
-import { typography } from "../__generated__/figma-design-tokens";
+import { typography } from "../figma-design-tokens";
 
 const normalize = {
   userSelect: "none",

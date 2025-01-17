@@ -19,8 +19,19 @@ import type { User } from "~/shared/db/user.server";
 const containerStyle = css({
   px: theme.spacing[13],
   bc: theme.colors.backgroundPanel,
+  minWidth: "fit-content",
+  justifyContent: "space-between",
+  top: theme.spacing[5],
+  display: "flex",
+  /*TODO: (#Webtir) #paletteUpdates backgroundTopbar color is not used anymore*/
+  /*background: theme.colors.backgroundTopbar,*/
+  background: theme.colors.panel,
   height: theme.spacing[15],
-  boxShadow: theme.shadows.brandElevationBig,
+  boxShadow: "inset 0 0 0 1px rgba(0,0,0,.1)",
+  margin: theme.spacing[5],
+  paddingInline: theme.spacing[7],
+  color: "inherit",
+  borderRadius: theme.borderRadius[7],
 });
 
 const getAvatarLetter = (title?: string) => {
@@ -66,7 +77,7 @@ export const Header = ({ user }: { user: User }) => {
       justify="between"
       className={containerStyle()}
     >
-      <WebtirIcon />
+      <WebtirIcon width="22" height="22" />
       <Flex gap="1" align="center">
         <Menu user={user} />
       </Flex>

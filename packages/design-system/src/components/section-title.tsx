@@ -18,7 +18,7 @@ import { Button } from "./button";
 import { cssVars } from "@webstudio-is/css-vars";
 import { ArrowFocus } from "./primitives/arrow-focus";
 import { Label, isLabelButton } from "./label";
-import { typography } from "../__generated__/figma-design-tokens";
+import { typography } from "../figma-design-tokens";
 
 const buttonContentColor = cssVars.define("button-content-color");
 const labelTextColor = cssVars.define("label-text-color");

@@ -132,7 +132,21 @@ export const CreateProject = () => {
   return (
     <Dialog
       title="New Project"
-      trigger={<Button prefix={<PlusIcon />}>New Project</Button>}
+      trigger={
+        <Button
+          prefix={<PlusIcon size={14} />}
+          state={state === "idle" ? undefined : "pending"}
+          disabled={false}
+          color="darkFixed"
+          type="submit"
+        >
+          <Flex gap="1">
+            <Text variant="labelsTitleCase" align="center">
+              Start a New Project
+            </Text>
+          </Flex>
+        </Button>
+      }
       onOpenChange={handleOpenChange}
     >
       <DialogContent

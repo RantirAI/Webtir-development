@@ -28,8 +28,9 @@ import { Spinner } from "../spinner";
 
 const containerStyle = css({
   overflow: "hidden",
-  width: theme.spacing[31],
-  height: theme.spacing[29],
+  /*TODO: (#Webtir) Use theme spacing variables for width and height when possible*/
+  width: "360px",
+  height: "300px",
   borderWidth: 1,
   borderStyle: "solid",
   borderColor: theme.colors.borderMain,
