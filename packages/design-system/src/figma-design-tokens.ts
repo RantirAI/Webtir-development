@@ -192,9 +192,9 @@ export const typography = {
   },
   brandMediumTitle: {
     fontFamily: "Manrope Variable, ManropeVariable, Manrope, sans-serif",
-    fontWeight: 700,
-    fontSize: "32px",
-    lineHeight: "38px",
+    fontWeight: 800,
+    fontSize: "24px",
+    lineHeight: "30px",
     letterSpacing: "-0.02em",
     textTransform: "none",
     textDecoration: "none",
@@ -431,6 +431,7 @@ export const color = {
   brandBackgroundPublishedMain: "#39fbbb",
   brandBackgroundGradient: "linear-gradient(180deg, #e63cfe 0%, #ffae3c 100%)",
   brandBackgroundPublishedContrast: "#ebfffc",
+  brandBackgroundDashboard: "#ededed",
   brandBackgroundRegularButtonSelected:
     "linear-gradient(180deg, #bffeec 0%, #fbfff6 100%)",
   brandBackgroundCtaButton: "linear-gradient(135deg, #4a4efa 0%, #bd2fdb 100%)",
@@ -500,17 +501,6 @@ export const color = {
   maintenanceDark: "#858585",
   maintenanceSpacerViz: "#f9c6c6",
   backgrondMenuHint: "#dedede",
-
-  // Colors used on the dashboard page:
-  // TODO: (#Webtir) Ideally, the shared properties have to be used
-  // However, since dashboard page does not supposed to have dark mode,
-  // special variables used here
-  brandBackgroundFixed: "#ffffff",
-  backgroundPanelFixed: "#ffffff",
-  foregroundMainFixed: "#11181c",
-  borderNeutralFixed: "#e8e8e8",
-  backgroundTopbarFixed: "#2d2d2d",
-  foregroundContrastMainFixed: "#ffffff",
 } as const;
 
 export const borderWidth = { "0": 1, "1": 2 } as const;

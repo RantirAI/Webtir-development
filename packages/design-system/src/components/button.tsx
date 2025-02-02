@@ -22,7 +22,6 @@ const colors = [
   "neutral",
   "ghost",
   "dark",
-  "darkFixed",
   "gradient",
   "neutral-destructive",
 ] as const;
@@ -41,10 +40,6 @@ const backgrounds: Record<ButtonColor, string> = {
   ghost: theme.colors.backgroundHover,
   dark: theme.colors.backgroundTopbar,
   gradient: theme.colors.backgroundGradientPrimary,
-
-  //TODO: (#Webtir) Since not all pages have dark mode, there are fixed
-  // variables that preserve color whatever theme is selected
-  darkFixed: theme.colors.backgroundTopbarFixed,
 };
 
 const foregrounds: Record<ButtonColor, string> = {
@@ -57,10 +52,6 @@ const foregrounds: Record<ButtonColor, string> = {
   ghost: theme.colors.foregroundMain,
   dark: theme.colors.foregroundContrastMain,
   gradient: theme.colors.foregroundContrastMain,
-
-  //TODO: (#Webtir) Since not all pages have dark mode, there are fixed
-  // variables that preserve color whatever theme is selected
-  darkFixed: theme.colors.foregroundContrastMainFixed,
 };
 
 // CSS supports multiple gradients as backgrounds but not multiple colors
@@ -129,7 +120,6 @@ const StyledButton = styled("button", {
       neutral: perColorStyle("neutral"),
       ghost: perColorStyle("ghost"),
       dark: perColorStyle("dark"),
-      darkFixed: perColorStyle("darkFixed"),
       gradient: perColorStyle("gradient"),
     },
   },
