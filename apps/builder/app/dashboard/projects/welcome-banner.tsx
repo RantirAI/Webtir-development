@@ -7,7 +7,7 @@ import { WelcomeBannerBrandsIcon } from "@webstudio-is/icons";
 import { CreateProject } from "~/dashboard/projects/project-dialogs";
 
 const welcomeBannerStyle = css({
-  background: theme.colors.brandBackgroundDashboard,
+  background: theme.colors.white,
   borderRadius: theme.borderRadius[6],
   border: `1px solid ${theme.colors.borderNeutral}`,
   color: theme.colors.foregroundMain,
