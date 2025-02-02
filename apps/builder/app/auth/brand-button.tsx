@@ -3,25 +3,21 @@ import type { ComponentProps } from "react";
 
 const buttonStyle = css({
   all: "unset",
+  width: theme.spacing[28],
   boxSizing: "border-box",
   minWidth: 0,
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
   gap: theme.spacing[5],
-  height: theme.spacing[15],
+  height: theme.spacing[13],
   px: theme.spacing[9],
-  borderRadius: 12,
-  border: "2px solid transparent",
+  borderRadius: theme.spacing[5],
+  border: `1px solid ${theme.colors.borderNeutral}`,
   whiteSpace: "nowrap",
-  backgroundImage: `
-    linear-gradient(${theme.colors.backgroundPanel}, ${theme.colors.backgroundPanel}), 
-    ${theme.colors.brandBorderFullGradient}
-  `,
   backgroundOrigin: "border-box",
   backgroundClip: "padding-box, border-box",
   color: theme.colors.foregroundMain,
-  boxShadow: theme.shadows.brandElevationSmall,
   ...textVariants.brandButtonRegular,
   "&:hover": {
     boxShadow: theme.shadows.brandElevationBig,
@@ -33,7 +29,6 @@ const buttonStyle = css({
   "&:disabled": {
     boxShadow: "none",
     color: theme.colors.foregroundDisabled,
-    borderColor: theme.colors.borderMain,
     "& svg": {
       opacity: "0.5",
     },

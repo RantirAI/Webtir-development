@@ -2,6 +2,7 @@ import {
   Button,
   Flex,
   DeprecatedTextField,
+  Text,
   theme,
 } from "@webstudio-is/design-system";
 import { CommitIcon } from "@webstudio-is/icons";
@@ -41,9 +42,9 @@ export const SecretLogin = () => {
     <LoginButton
       isSecretLogin
       onClick={() => setIsSecretLoginOpen(true)}
-      icon={<CommitIcon size={22} />}
+      icon={<CommitIcon size={18} />}
     >
-      Login with Secret
+      <Text>Login with Secret</Text>
     </LoginButton>
   );
 };

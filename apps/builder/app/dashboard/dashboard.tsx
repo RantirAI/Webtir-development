@@ -7,7 +7,7 @@ import type { DashboardProject } from "@webstudio-is/dashboard";
 const globalStyles = globalCss({
   body: {
     margin: 0,
-    background: theme.colors.brandBackgroundDashboard,
+    background: theme.colors.white,
   },
 });
 

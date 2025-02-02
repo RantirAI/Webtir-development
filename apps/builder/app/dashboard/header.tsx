@@ -44,9 +44,14 @@ const Menu = ({ user }: { user: User }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button color="ghost" aria-label="Menu Button" css={{ height: "100%" }}>
+        <Button
+          color="transparent"
+          aria-label="Menu Button"
+          css={{ height: "100%" }}
+        >
           <Flex gap="1" align="center">
             <Avatar
+              size="2"
               src={user?.image || undefined}
               fallback={getAvatarLetter(title)}
               alt={title || "User Avatar"}

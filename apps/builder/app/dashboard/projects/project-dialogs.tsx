@@ -137,7 +137,7 @@ export const CreateProject = () => {
           prefix={<PlusIcon size={14} />}
           state={state === "idle" ? undefined : "pending"}
           disabled={false}
-          color="darkFixed"
+          color="dark"
           type="submit"
         >
           <Flex gap="1">

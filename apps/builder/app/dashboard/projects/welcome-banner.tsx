@@ -7,10 +7,10 @@ import { WelcomeBannerBrandsIcon } from "@webstudio-is/icons";
 import { CreateProject } from "~/dashboard/projects/project-dialogs";
 
 const welcomeBannerStyle = css({
-  background: theme.colors.brandBackgroundFixed,
+  background: theme.colors.brandBackgroundDashboard,
   borderRadius: theme.borderRadius[6],
-  border: `1px solid ${theme.colors.borderNeutralFixed}`,
-  color: theme.colors.foregroundMainFixed,
+  border: `1px solid ${theme.colors.borderNeutral}`,
+  color: theme.colors.foregroundMain,
   minWidth: "min-content",
   // TODO: (#Webtir) Remove "brandElevationBig" from palette. Color not used anymore
   //boxShadow: theme.shadows.brandElevationBig,
